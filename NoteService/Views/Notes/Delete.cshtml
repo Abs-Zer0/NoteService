@@ -1,0 +1,35 @@
+﻿@model NoteService.Models.Note
+
+@{
+    ViewData["Title"] = "Удалить заметку?";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы действительно хотите удалить эту заметку?</h3>
+<div>
+    <h4>Заметка</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Head)
+        </dt>
+        <dd class="col-sm-10">
+            <h3>
+                @Html.DisplayFor(model => model.Head)
+            </h3>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>

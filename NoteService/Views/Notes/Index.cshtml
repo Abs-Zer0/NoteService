@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NoteService.Models.Note>
+
+@{
+    ViewData["Title"] = "NoteService";
+}
+
+<h1>Список заметок</h1>
+
+<p>
+    <a asp-action="Create">Создать новую заметку</a>
+</p>
+
+<form asp-controller="Notes" asp-action="Index" method="get">
+    <p>
+        <input type="text" name="searchTemplate" value="@ViewData["searchTmp"]" />
+        <input type="submit" value="Найти" />
+    </p>
+</form>
+
+<table class="table">
+    <!--
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Head)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    -->
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.IsEmptyHead())
+                    {
+                        @Html.DisplayFor(modelItem => item.Body)
+                    }
+                    else
+                    {
+                        <h3>
+                            @Html.DisplayFor(modelItem => item.Head)
+                        </h3>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Дополнительно</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
