@@ -32,7 +32,8 @@ namespace NoteService.Controllers
 
             if (!String.IsNullOrWhiteSpace(searchTemplate))
             {
-                notes = notes.Where(note => note.Head.Contains(searchTemplate) || note.Body.Contains(searchTemplate));
+                notes = notes.Where(note => note.Head.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)
+                    || note.Body.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase));
                 ViewData["searchTmp"] = searchTemplate;
             }
 
