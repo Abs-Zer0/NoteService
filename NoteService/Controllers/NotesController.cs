@@ -32,8 +32,8 @@ namespace NoteService.Controllers
 
             if (!String.IsNullOrWhiteSpace(searchTemplate))
             {
-                notes = notes.Where(note => note.Head.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)
-                    || note.Body.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase));
+                notes = notes.AsEnumerable().Where(note => note.Head.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)
+                    || note.Body.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)).AsQueryable();
                 ViewData["searchTmp"] = searchTemplate;
             }
 
