@@ -33,7 +33,7 @@ namespace NoteService.Controllers
 
             if (!String.IsNullOrWhiteSpace(searchTemplate))
             {
-                notes = _context.Notes
+                notes = _context.Notes.AsEnumerable()
                     .Where(note => note.Head.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)
                     || note.Body.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase))
                     .ToListAsync();
