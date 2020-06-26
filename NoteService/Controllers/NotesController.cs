@@ -29,20 +29,20 @@ namespace NoteService.Controllers
         public async Task<IActionResult> Index(string searchTemplate)
         {
             //var notes = from note in _context.Notes select note;
-            Task<List<Note>> notes;
+            List<Note> notes;
 
             if (!String.IsNullOrWhiteSpace(searchTemplate))
             {
-                notes = _context.Notes.AsEnumerable()
+                notes = _context.Notes.ToList()
                     .Where(note => note.Head.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase)
                     || note.Body.Contains(searchTemplate, StringComparison.OrdinalIgnoreCase))
-                    .ToListAsync();
+                    .ToList();
                 ViewData["searchTmp"] = searchTemplate;
             }
             else
-                notes = _context.Notes.ToListAsync();
+                notes = _context.Notes.ToList();
 
-            return View(await notes/*.ToListAsync()*/);
+            return View(/*await */notes/*.ToListAsync()*/);
         }
 
         // GET: Notes/Details/5
