@@ -9,7 +9,10 @@ namespace NoteService.Data
 {
     public class NoteServiceContext : DbContext
     {
-        public NoteServiceContext(DbContextOptions<NoteServiceContext> options) : base(options) { }
+        public NoteServiceContext(DbContextOptions<NoteServiceContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
 
         public DbSet<Note> Notes { get; set; }
     }
