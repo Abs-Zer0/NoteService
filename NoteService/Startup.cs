@@ -28,7 +28,7 @@ namespace NoteService
             services.AddControllersWithViews();
 
             services.AddDbContext<NoteServiceContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("NoteServiceContext")));
+                options.UseSqlite(Configuration.GetConnectionString("NoteServiceContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
